@@ -79,12 +79,14 @@ export default function CTASection() {
 
           {/* BUTTONS */}
           <div className="flex flex-col md:flex-row justify-center gap-5 mb-12">
-            <Link
-              href="/book-now"
-              className="bg-[#D4AF37] text-black font-bold px-10 py-5 rounded-xl text-lg hover:opacity-90 transition duration-300 shadow-[0_0_25px_rgba(212,175,55,0.35)]"
-            >
-              Book Your Ride
-            </Link>
+            <a
+  href="https://book.mylimobiz.com/v4/jsrexecutive"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="rounded-xl border border-[#D4AF37] bg-black px-8 py-4 text-lg font-bold text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black"
+>
+  Book Now
+</a>
 
             <Link
               href="/get-a-quote"

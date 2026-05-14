@@ -57,12 +57,15 @@ export default function FleetPage() {
         </p>
 
         <div className="flex flex-col justify-center gap-5 md:flex-row">
-          <Link
-            href="/book-now"
-            className="rounded-xl bg-[#D4AF37] px-10 py-5 text-lg font-bold text-black transition hover:opacity-90"
-          >
-            Book Your Ride
-          </Link>
+          
+          <a
+  href="https://book.mylimobiz.com/v4/jsrexecutive"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="rounded-xl border border-[#D4AF37] bg-black px-8 py-4 text-lg font-bold text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black"
+>
+  Book Now
+</a>
 
           <Link
             href="/get-a-quote"
