@@ -113,19 +113,17 @@ export default function HomePage() {
 
       {/* FOOTER */}
       <footer className="border-t border-[#D4AF37]/30 bg-black px-6 py-14">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-4">
-          
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-5">
+
           {/* BRAND */}
-          <div>
-            <h2 className="text-5xl font-bold text-[#D4AF37]">
-              JSR
-            </h2>
+          <div className="col-span-2 lg:col-span-1">
+            <img
+              src="/images/logo.png"
+              alt="JSR Executive Transportation"
+              className="mb-6 w-24 object-contain"
+            />
 
-            <p className="mt-2 text-sm tracking-[0.3em] text-[#D4AF37]">
-              EXECUTIVE TRANSPORTATION
-            </p>
-
-            <p className="mt-6 text-white/80 leading-8">
+            <p className="leading-8 text-white/80">
               Premium transportation.
               <br />
               Professional service.
@@ -135,7 +133,7 @@ export default function HomePage() {
 
             <a
               href="tel:4752244700"
-              className="mt-8 inline-block rounded-xl border border-[#D4AF37] px-6 py-4 text-2xl font-bold text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black"
+              className="mt-8 inline-block rounded-xl border border-[#D4AF37] px-6 py-4 text-lg font-bold text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black"
             >
               475-224-4700
             </a>
@@ -143,11 +141,11 @@ export default function HomePage() {
 
           {/* QUICK LINKS */}
           <div>
-            <h3 className="mb-6 text-2xl font-semibold text-[#D4AF37]">
+            <h3 className="mb-6 text-xl font-semibold text-[#D4AF37]">
               QUICK LINKS
             </h3>
 
-            <div className="flex flex-col gap-4 text-white/90">
+            <div className="flex flex-col gap-3 text-white/90">
               <Link href="/" className="hover:text-[#D4AF37]">
                 Home
               </Link>
@@ -176,11 +174,11 @@ export default function HomePage() {
 
           {/* SERVICES */}
           <div>
-            <h3 className="mb-6 text-2xl font-semibold text-[#D4AF37]">
+            <h3 className="mb-6 text-xl font-semibold text-[#D4AF37]">
               OUR SERVICES
             </h3>
 
-            <div className="flex flex-col gap-4 text-white/90">
+            <div className="flex flex-col gap-3 text-white/90">
               <p>Airport Transfers</p>
               <p>Corporate Transportation</p>
               <p>Weddings & Events</p>
@@ -191,11 +189,11 @@ export default function HomePage() {
 
           {/* CONTACT */}
           <div>
-            <h3 className="mb-6 text-2xl font-semibold text-[#D4AF37]">
+            <h3 className="mb-6 text-xl font-semibold text-[#D4AF37]">
               CONTACT US
             </h3>
 
-            <div className="flex flex-col gap-4 text-white/90">
+            <div className="flex flex-col gap-3 text-white/90">
               <p>Servicing Connecticut & Surrounding Areas</p>
 
               <a
@@ -206,13 +204,75 @@ export default function HomePage() {
               </a>
 
               <a
-                href="mailto:accounting@jsrexecutive.com?subject=JSR Executive Transportation Quote Request"
-                className="hover:text-[#D4AF37] transition"
+                href="mailto:accounting@jsrexecutive.com"
+                className="hover:text-[#D4AF37]"
               >
                 accounting@jsrexecutive.com
               </a>
 
               <p>24/7 Availability</p>
+            </div>
+          </div>
+
+          {/* POLICIES */}
+          <div>
+            <h3 className="mb-6 text-xl font-semibold text-[#D4AF37]">
+              POLICIES
+            </h3>
+
+            <div className="flex flex-col gap-3 text-white/90">
+              <Link href="/terms" className="hover:text-[#D4AF37]">
+                Terms & Conditions
+              </Link>
+
+              <Link
+                href="/cancellation-policy"
+                className="hover:text-[#D4AF37]"
+              >
+                Cancellation Policy
+              </Link>
+
+              <Link
+                href="/privacy-policy"
+                className="hover:text-[#D4AF37]"
+              >
+                Privacy Policy
+              </Link>
+
+              <Link
+                href="/payment-policy"
+                className="hover:text-[#D4AF37]"
+              >
+                Payment Policy
+              </Link>
+
+              <Link
+                href="/wait-time-policy"
+                className="hover:text-[#D4AF37]"
+              >
+                Wait Time Policy
+              </Link>
+
+              <Link
+                href="/no-show-policy"
+                className="hover:text-[#D4AF37]"
+              >
+                No-Show Policy
+              </Link>
+
+              <Link
+                href="/damage-cleaning-policy"
+                className="hover:text-[#D4AF37]"
+              >
+                Damage / Cleaning Policy
+              </Link>
+
+              <Link
+                href="/airport-delay-policy"
+                className="hover:text-[#D4AF37]"
+              >
+                Airport Delay Policy
+              </Link>
             </div>
           </div>
         </div>
