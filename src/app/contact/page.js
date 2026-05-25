@@ -111,10 +111,10 @@ export default function CTASection() {
             <p>
               Email:{" "}
               <a
-                href="mailto:admin@jsrexecutive.com"
+                href="mailto:contact@jsrexecutive.com"
                 className="text-[#D4AF37] hover:text-white transition"
               >
-                admin@jsrexecutive.com
+                contact@jsrexecutive.com
               </a>
             </p>
           </div>
