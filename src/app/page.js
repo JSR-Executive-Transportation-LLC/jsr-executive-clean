@@ -16,19 +16,31 @@ export default function HomePage() {
         />
 
         <nav className="absolute right-0 top-0 z-30 flex gap-8 px-10 py-8 text-lg font-medium">
-          <Link href="/" className="text-[#D4AF37] transition hover:text-white">
+          <Link
+            href="/"
+            className="text-[#D4AF37] transition hover:text-white"
+          >
             Home
           </Link>
 
-          <Link href="/services" className="transition hover:text-[#D4AF37]">
+          <Link
+            href="/services"
+            className="transition hover:text-[#D4AF37]"
+          >
             Services
           </Link>
 
-          <Link href="/fleet" className="transition hover:text-[#D4AF37]">
+          <Link
+            href="/fleet"
+            className="transition hover:text-[#D4AF37]"
+          >
             Fleet
           </Link>
 
-          <Link href="/contact" className="transition hover:text-[#D4AF37]">
+          <Link
+            href="/contact"
+            className="transition hover:text-[#D4AF37]"
+          >
             Contact
           </Link>
         </nav>
@@ -100,95 +112,116 @@ export default function HomePage() {
       </section>
 
       {/* FOOTER */}
-<footer className="border-t border-[#D4AF37]/30 bg-black px-6 py-14">
-  <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-4">
+      <footer className="border-t border-[#D4AF37]/30 bg-black px-6 py-14">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-4">
+          
+          {/* BRAND */}
+          <div>
+            <h2 className="text-5xl font-bold text-[#D4AF37]">
+              JSR
+            </h2>
 
-    {/* BRAND */}
-    <div>
-      <h2 className="text-4xl font-bold text-[#D4AF37]">
-        JSR
-      </h2>
+            <p className="mt-2 text-sm tracking-[0.3em] text-[#D4AF37]">
+              EXECUTIVE TRANSPORTATION
+            </p>
 
-      <p className="mt-2 text-sm tracking-[0.3em] text-[#D4AF37]">
-        EXECUTIVE TRANSPORTATION
-      </p>
+            <p className="mt-6 text-white/80 leading-8">
+              Premium transportation.
+              <br />
+              Professional service.
+              <br />
+              Every ride, elevated.
+            </p>
 
-      <p className="mt-6 text-white/80">
-        Premium transportation.
-        <br />
-        Professional service.
-        <br />
-        Every ride, elevated.
-      </p>
+            <a
+              href="tel:4752244700"
+              className="mt-8 inline-block rounded-xl border border-[#D4AF37] px-6 py-4 text-2xl font-bold text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black"
+            >
+              475-224-4700
+            </a>
+          </div>
 
-      <a
-        href="tel:4752244700"
-        className="mt-6 inline-block rounded-xl border border-[#D4AF37] px-6 py-4 text-xl font-bold text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black"
-      >
-        475-224-4700
-      </a>
-    </div>
+          {/* QUICK LINKS */}
+          <div>
+            <h3 className="mb-6 text-2xl font-semibold text-[#D4AF37]">
+              QUICK LINKS
+            </h3>
 
-    {/* QUICK LINKS */}
-    <div>
-      <h3 className="mb-6 text-xl font-semibold text-[#D4AF37]">
-        QUICK LINKS
-      </h3>
+            <div className="flex flex-col gap-4 text-white/90">
+              <Link href="/" className="hover:text-[#D4AF37]">
+                Home
+              </Link>
 
-      <div className="flex flex-col gap-4">
-        <Link href="/">Home</Link>
-        <Link href="/services">Services</Link>
-        <Link href="/fleet">Fleet</Link>
-        <Link href="/get-a-quote">Get a Quote</Link>
-        <Link href="/about">About JSR</Link>
-        <Link href="/contact">Contact</Link>
-      </div>
-    </div>
+              <Link href="/services" className="hover:text-[#D4AF37]">
+                Services
+              </Link>
 
-    {/* SERVICES */}
-    <div>
-      <h3 className="mb-6 text-xl font-semibold text-[#D4AF37]">
-        OUR SERVICES
-      </h3>
+              <Link href="/fleet" className="hover:text-[#D4AF37]">
+                Fleet
+              </Link>
 
-      <div className="flex flex-col gap-4 text-white/90">
-        <p>Airport Transfers</p>
-        <p>Corporate Transportation</p>
-        <p>Weddings & Events</p>
-        <p>Hourly Chauffeur Service</p>
-        <p>Executive Night Out</p>
-      </div>
-    </div>
+              <Link href="/get-a-quote" className="hover:text-[#D4AF37]">
+                Get a Quote
+              </Link>
 
-    {/* CONTACT */}
-    <div>
-      <h3 className="mb-6 text-xl font-semibold text-[#D4AF37]">
-        CONTACT US
-      </h3>
+              <Link href="/about" className="hover:text-[#D4AF37]">
+                About JSR
+              </Link>
 
-      <div className="flex flex-col gap-4 text-white/90">
-        <p>Servicing Connecticut & Surrounding Areas</p>
+              <Link href="/contact" className="hover:text-[#D4AF37]">
+                Contact
+              </Link>
+            </div>
+          </div>
 
-        <a href="tel:4752244700">
-          475-224-4700
-        </a>
+          {/* SERVICES */}
+          <div>
+            <h3 className="mb-6 text-2xl font-semibold text-[#D4AF37]">
+              OUR SERVICES
+            </h3>
 
-        <a
-  href="mailto:accounting@jsrexecutive.com?subject=JSR Executive Transportation Quote Request"
-  className="hover:text-[#D4AF37] transition"
->
-  accounting@jsrexecutive.com
-</a>
+            <div className="flex flex-col gap-4 text-white/90">
+              <p>Airport Transfers</p>
+              <p>Corporate Transportation</p>
+              <p>Weddings & Events</p>
+              <p>Hourly Chauffeur Service</p>
+              <p>Executive Night Out</p>
+            </div>
+          </div>
 
-        <p>24/7 Availability</p>
-      </div>
-    </div>
-  </div>
+          {/* CONTACT */}
+          <div>
+            <h3 className="mb-6 text-2xl font-semibold text-[#D4AF37]">
+              CONTACT US
+            </h3>
 
-  <div className="mt-14 border-t border-[#D4AF37]/20 pt-6 text-center text-sm text-white/60">
-    © 2026 JSR Executive Transportation. All Rights Reserved.
-  </div>
-    </footer>
-  </main>
-);
+            <div className="flex flex-col gap-4 text-white/90">
+              <p>Servicing Connecticut & Surrounding Areas</p>
+
+              <a
+                href="tel:4752244700"
+                className="hover:text-[#D4AF37]"
+              >
+                475-224-4700
+              </a>
+
+              <a
+                href="mailto:accounting@jsrexecutive.com?subject=JSR Executive Transportation Quote Request"
+                className="hover:text-[#D4AF37] transition"
+              >
+                accounting@jsrexecutive.com
+              </a>
+
+              <p>24/7 Availability</p>
+            </div>
+          </div>
+        </div>
+
+        {/* COPYRIGHT */}
+        <div className="mt-14 border-t border-[#D4AF37]/20 pt-6 text-center text-sm text-white/60">
+          © 2026 JSR Executive Transportation. All Rights Reserved.
+        </div>
+      </footer>
+    </main>
+  );
 }
