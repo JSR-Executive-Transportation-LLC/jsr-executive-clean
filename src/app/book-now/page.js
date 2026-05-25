@@ -257,11 +257,30 @@ export default function BookNowPage() {
             <Divider />
 
             <button
-              type="submit"
-              className="w-full rounded-xl bg-[#D4AF37] py-5 text-xl font-bold text-black shadow-lg transition hover:opacity-90 hover:shadow-[0_0_28px_rgba(212,175,55,0.35)]"
-            >
-              Submit Reservation Request
-            </button>
+  type="button"
+  onClick={async () => {
+    const res = await fetch("/api/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount: 10000, // $100 test authorization
+      }),
+    });
+
+    const data = await res.json();
+
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert("Unable to start checkout.");
+    }
+  }}
+  className="w-full rounded-xl bg-[#D4AF37] py-5 text-xl font-bold text-black shadow-lg transition hover:opacity-90 hover:shadow-[0_0_28px_rgba(212,175,55,0.35)]"
+>
+  Continue to Secure Payment
+</button>
 
             <p className="mt-5 text-center text-gray-300">
               A JSR representative will contact you shortly to confirm your
