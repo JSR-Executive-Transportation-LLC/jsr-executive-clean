@@ -24,7 +24,7 @@ export default function CancellationPolicyPage() {
           <p>
             Specialty vehicles including sprinter vans, stretch limousines,
             party buses, wedding transportation, and event transportation may
-            require a minimum 30-daycancellation notice.
+            require a minimum 30-day cancellation notice.
           </p>
 
           <p>
