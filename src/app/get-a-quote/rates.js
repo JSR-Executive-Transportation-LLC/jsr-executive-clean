@@ -30566,5 +30566,4 @@ export const routeRates = [
       "rateType": "Estimated",
       "tripDirection": "To/From"
     }
-  ]
-}
+  ];
