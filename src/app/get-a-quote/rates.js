@@ -1,4 +1,4 @@
-export construct hourlyRates = {
+export const hourlyRates = {
   sedan: 70,
   suv: 80,
   minimumHours: 2,
