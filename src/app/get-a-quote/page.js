@@ -16,6 +16,17 @@ function money(value) {
   return `$${Number(value).toLocaleString()}`;
 }
 
+function normalizeVehicle(route) {
+  return (route.vehicle || route.vehicleType || "")
+    .toString()
+    .trim()
+    .toLowerCase();
+}
+
+function normalizeText(value) {
+  return value.toString().trim();
+}
+
 export default function QuotePage() {
   const [pickup, setPickup] = useState("");
   const [dropoff, setDropoff] = useState("");
@@ -30,13 +41,18 @@ export default function QuotePage() {
     const map = new Map();
 
     routeRates.forEach((route) => {
-      const { origin, destination, vehicle, rate } = route;
+      const origin = normalizeText(route.origin || "");
+      const destination = normalizeText(route.destination || "");
+      const routeVehicle = normalizeVehicle(route);
+      const rate = Number(route.rate);
+
+      if (!origin || !destination || !routeVehicle || !rate) return;
 
       locationSet.add(origin);
       locationSet.add(destination);
 
-      const forwardKey = `${origin}|||${destination}|||${vehicle}`;
-      const reverseKey = `${destination}|||${origin}|||${vehicle}`;
+      const forwardKey = `${origin}|||${destination}|||${routeVehicle}`;
+      const reverseKey = `${destination}|||${origin}|||${routeVehicle}`;
 
       map.set(forwardKey, rate);
       map.set(reverseKey, rate);
@@ -65,7 +81,9 @@ export default function QuotePage() {
     const routeRate = rateMap.get(routeKey);
 
     if (routeRate) {
-      const vehicleLabel = vehicle === "sedan" ? "Executive Sedan" : "Luxury SUV";
+      const vehicleLabel =
+        vehicle === "sedan" ? "Executive Sedan" : "Luxury SUV";
+
       setEstimate(`Estimated ${vehicleLabel} Transfer: ${money(routeRate)}`);
       return;
     }
@@ -140,7 +158,6 @@ Please contact me to confirm final pricing and availability.`
               onChange={(event) => setPickup(event.target.value)}
             >
               <option value="">Select Pickup Location</option>
-
               {locations.map((location) => (
                 <option key={`pickup-${location}`} value={location}>
                   {location}
@@ -154,7 +171,6 @@ Please contact me to confirm final pricing and availability.`
               onChange={(event) => setDropoff(event.target.value)}
             >
               <option value="">Select Drop-Off Location</option>
-
               {locations.map((location) => (
                 <option key={`dropoff-${location}`} value={location}>
                   {location}
@@ -168,7 +184,6 @@ Please contact me to confirm final pricing and availability.`
               onChange={(event) => setVehicle(event.target.value)}
             >
               <option value="">Select Vehicle</option>
-
               {vehicleOptions.map((option) => (
                 <option key={option.label} value={option.value}>
                   {option.label}
@@ -215,16 +230,6 @@ Please contact me to confirm final pricing and availability.`
               Request Executive Quote
             </button>
           </div>
-
-          <p className="mt-6 text-center text-sm text-white/70">
-            Need immediate assistance?{" "}
-            <a
-              href="mailto:accounting@jsrexecutive.com?subject=JSR Executive Transportation Quote Request"
-              className="text-[#D4AF37] hover:underline"
-            >
-              accounting@jsrexecutive.com
-            </a>
-          </p>
         </section>
       </div>
     </main>
