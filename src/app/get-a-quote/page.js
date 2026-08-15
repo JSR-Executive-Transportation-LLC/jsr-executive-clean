@@ -28,6 +28,7 @@ function normalizeText(value) {
 }
 
 export default function QuotePage() {
+  const [serviceType, setServiceType] = useState("point-to-point");
   const [pickup, setPickup] = useState("");
   const [dropoff, setDropoff] = useState("");
   const [vehicle, setVehicle] = useState("");
@@ -65,8 +66,8 @@ export default function QuotePage() {
   }, []);
 
   const calculateEstimate = () => {
-    if (!pickup || !dropoff || !vehicle) {
-      setEstimate("Please select pickup, drop-off, and vehicle type.");
+    if (!vehicle) {
+      setEstimate("Please select a vehicle type.");
       return;
     }
 
@@ -77,38 +78,37 @@ export default function QuotePage() {
       return;
     }
 
+    if (serviceType === "hourly") {
+      const requestedHours = Math.max(
+        Number(hours) || hourlyRates.minimumHours,
+        hourlyRates.minimumHours
+      );
+      const hourlyRate = vehicle === "sedan" ? hourlyRates.sedan : hourlyRates.suv;
+      const vehicleLabel = vehicle === "sedan" ? "Executive Sedan" : "Luxury SUV";
+
+      setEstimate(
+        `Estimated ${vehicleLabel} Hourly Service: ${money(
+          requestedHours * hourlyRate
+        )} (${requestedHours} hours at ${money(hourlyRate)}/hour)`
+      );
+      return;
+    }
+
+    if (!pickup || !dropoff) {
+      setEstimate("Please select pickup and drop-off locations.");
+      return;
+    }
+
     const routeKey = `${pickup}|||${dropoff}|||${vehicle}`;
     const routeRate = rateMap.get(routeKey);
 
     if (routeRate) {
-      const vehicleLabel =
-        vehicle === "sedan" ? "Executive Sedan" : "Luxury SUV";
-
+      const vehicleLabel = vehicle === "sedan" ? "Executive Sedan" : "Luxury SUV";
       setEstimate(`Estimated ${vehicleLabel} Transfer: ${money(routeRate)}`);
       return;
     }
 
-    const requestedHours = Math.max(
-      Number(hours) || hourlyRates.minimumHours,
-      hourlyRates.minimumHours
-    );
-
-    if (vehicle === "sedan") {
-      setEstimate(
-        `Estimated Executive Sedan Hourly Service: ${money(
-          requestedHours * hourlyRates.sedan
-        )}`
-      );
-      return;
-    }
-
-    if (vehicle === "suv") {
-      setEstimate(
-        `Estimated Luxury SUV Hourly Service: ${money(
-          requestedHours * hourlyRates.suv
-        )}`
-      );
-    }
+    setEstimate("A point-to-point rate is not available for this route. Please submit a custom quote request.");
   };
 
   const handleRequestQuote = () => {
@@ -125,6 +125,7 @@ export default function QuotePage() {
 
 I would like to request an executive transportation quote.
 
+Service Type: ${serviceType === "hourly" ? "Hourly" : "Point-to-Point"}
 Pickup Location: ${pickup || "Not selected"}
 Drop-Off Location: ${dropoff || "Not selected"}
 Vehicle Type: ${selectedVehicle}
@@ -153,30 +154,40 @@ Please contact me to confirm final pricing and availability.`
         <section className="rounded-2xl border border-[#D4AF37]/40 bg-black/80 p-8 shadow-2xl">
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
             <select
-              className="rounded-xl border border-[#D4AF37]/30 bg-black px-4 py-4 text-white outline-none focus:border-[#D4AF37]"
-              value={pickup}
-              onChange={(event) => setPickup(event.target.value)}
+              className="rounded-xl border border-[#D4AF37]/30 bg-black px-4 py-4 text-white outline-none focus:border-[#D4AF37] md:col-span-2"
+              value={serviceType}
+              onChange={(event) => {
+                setServiceType(event.target.value);
+                setEstimate("Select trip details to calculate estimate.");
+              }}
             >
-              <option value="">Select Pickup Location</option>
-              {locations.map((location) => (
-                <option key={`pickup-${location}`} value={location}>
-                  {location}
-                </option>
-              ))}
+              <option value="point-to-point">Point-to-Point Transfer</option>
+              <option value="hourly">Hourly Service (2-hour minimum)</option>
             </select>
 
-            <select
-              className="rounded-xl border border-[#D4AF37]/30 bg-black px-4 py-4 text-white outline-none focus:border-[#D4AF37]"
-              value={dropoff}
-              onChange={(event) => setDropoff(event.target.value)}
-            >
-              <option value="">Select Drop-Off Location</option>
-              {locations.map((location) => (
-                <option key={`dropoff-${location}`} value={location}>
-                  {location}
-                </option>
-              ))}
-            </select>
+            {serviceType === "point-to-point" && <>
+              <select
+                className="rounded-xl border border-[#D4AF37]/30 bg-black px-4 py-4 text-white outline-none focus:border-[#D4AF37]"
+                value={pickup}
+                onChange={(event) => setPickup(event.target.value)}
+              >
+                <option value="">Select Pickup Location</option>
+                {locations.map((location) => (
+                  <option key={`pickup-${location}`} value={location}>{location}</option>
+                ))}
+              </select>
+
+              <select
+                className="rounded-xl border border-[#D4AF37]/30 bg-black px-4 py-4 text-white outline-none focus:border-[#D4AF37]"
+                value={dropoff}
+                onChange={(event) => setDropoff(event.target.value)}
+              >
+                <option value="">Select Drop-Off Location</option>
+                {locations.map((location) => (
+                  <option key={`dropoff-${location}`} value={location}>{location}</option>
+                ))}
+              </select>
+            </>}
 
             <select
               className="rounded-xl border border-[#D4AF37]/30 bg-black px-4 py-4 text-white outline-none focus:border-[#D4AF37]"
@@ -191,14 +202,17 @@ Please contact me to confirm final pricing and availability.`
               ))}
             </select>
 
-            <input
-              type="number"
-              min="2"
-              placeholder="Hourly Service Hours"
-              className="rounded-xl border border-[#D4AF37]/30 bg-black px-4 py-4 text-white outline-none placeholder:text-white/50 focus:border-[#D4AF37]"
-              value={hours}
-              onChange={(event) => setHours(event.target.value)}
-            />
+            {serviceType === "hourly" && (
+              <input
+                type="number"
+                min={hourlyRates.minimumHours}
+                step="1"
+                placeholder="Number of hours (2 minimum)"
+                className="rounded-xl border border-[#D4AF37]/30 bg-black px-4 py-4 text-white outline-none placeholder:text-white/50 focus:border-[#D4AF37]"
+                value={hours}
+                onChange={(event) => setHours(event.target.value)}
+              />
+            )}
           </div>
 
           <div className="mt-8 rounded-xl border border-[#D4AF37]/30 bg-black p-6 text-center">
