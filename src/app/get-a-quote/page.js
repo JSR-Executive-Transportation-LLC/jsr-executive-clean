@@ -6,10 +6,10 @@ import { hourlyRates, routeRates } from "./rates";
 const vehicleOptions = [
   { label: "Executive Sedan", value: "sedan" },
   { label: "Luxury SUV", value: "suv" },
-  { label: "Executive Sprinter Van", value: "custom" },
-  { label: "Stretch Limousine", value: "custom" },
-  { label: "Party Bus", value: "custom" },
-  { label: "Not Sure / Best Available", value: "custom" },
+  { label: "Executive Sprinter Van", value: "sprinter" },
+  { label: "Stretch Limousine", value: "limousine" },
+  { label: "Party Bus", value: "party-bus" },
+  { label: "Not Sure / Best Available", value: "best-available" },
 ];
 
 function money(value) {
@@ -36,6 +36,8 @@ export default function QuotePage() {
   const [estimate, setEstimate] = useState(
     "Select trip details to calculate estimate."
   );
+  const isCustomVehicle = vehicle && vehicle !== "sedan" && vehicle !== "suv";
+  const hourlyMinimum = isCustomVehicle ? 5 : 2;
 
   const { locations, rateMap } = useMemo(() => {
     const locationSet = new Set();
@@ -71,9 +73,11 @@ export default function QuotePage() {
       return;
     }
 
-    if (vehicle === "custom") {
+    if (isCustomVehicle) {
       setEstimate(
-        "Custom quote required for this vehicle. Please submit your request."
+        serviceType === "hourly"
+          ? "Custom hourly quote required for this vehicle (5-hour minimum). Please submit your request."
+          : "Custom quote required for this vehicle. Please submit your request."
       );
       return;
     }
@@ -162,7 +166,7 @@ Please contact me to confirm final pricing and availability.`
               }}
             >
               <option value="point-to-point">Point-to-Point Transfer</option>
-              <option value="hourly">Hourly Service (2-hour minimum)</option>
+              <option value="hourly">Hourly Service</option>
             </select>
 
             {serviceType === "point-to-point" && <>
@@ -205,15 +209,27 @@ Please contact me to confirm final pricing and availability.`
             {serviceType === "hourly" && (
               <input
                 type="number"
-                min={hourlyRates.minimumHours}
+                min={hourlyMinimum}
                 step="1"
-                placeholder="Number of hours (2 minimum)"
+                placeholder={`Number of hours (${hourlyMinimum} minimum)`}
                 className="rounded-xl border border-[#D4AF37]/30 bg-black px-4 py-4 text-white outline-none placeholder:text-white/50 focus:border-[#D4AF37]"
                 value={hours}
                 onChange={(event) => setHours(event.target.value)}
               />
             )}
           </div>
+
+          {serviceType === "hourly" && (
+            <p className="mt-4 text-center text-sm text-white/70">
+              {vehicle === "sedan"
+                ? "$89 per hour - 2-hour minimum"
+                : vehicle === "suv"
+                  ? "$109 per hour - 2-hour minimum"
+                  : isCustomVehicle
+                    ? "This vehicle requires a custom rate and has a 5-hour minimum."
+                    : "Sedan and SUV: 2-hour minimum. All other vehicles: 5-hour minimum."}
+            </p>
+          )}
 
           <div className="mt-8 rounded-xl border border-[#D4AF37]/30 bg-black p-6 text-center">
             <p className="text-2xl font-semibold text-[#D4AF37]">
