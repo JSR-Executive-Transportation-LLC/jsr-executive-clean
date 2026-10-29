@@ -139,7 +139,7 @@ Estimate Shown: ${estimate}
 Please contact me to confirm final pricing and availability.`
     );
 
-    window.location.href = `mailto:accounting@jsrexecutive.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:reservations@jsrexecutive.com?subject=${subject}&body=${body}`;
   };
 
   return (

@@ -6,8 +6,7 @@ export const COMPANY = "JSR Executive Transportation";
 export const PHONE = "475-224-4700";
 export const PHONE_LINK = "tel:+14752244700";
 export const SMS_LINK = "sms:+14752244700";
-// Tip: create reservations@jsrexecutive.com in your email account and put it here.
-export const EMAIL = "accounting@jsrexecutive.com";
+export const EMAIL = "reservations@jsrexecutive.com";
 export const BOOKING_URL = "https://book.mylimobiz.com/v4/jsrexecutive";
 export const QUOTE_PATH = "/get-a-quote";
 
