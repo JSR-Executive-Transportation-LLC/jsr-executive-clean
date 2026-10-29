@@ -93,10 +93,10 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="rounded-2xl border border-line bg-ink p-6 md:p-8">
-            <p className="mb-4 font-display text-sm tracking-[0.2em] text-gold">TYPICAL DRIVE FROM STAMFORD</p>
+            <p className="mb-4 font-display text-sm tracking-[0.2em] text-gold">TYPICAL DRIVE FROM NEW HAVEN</p>
             <ul className="divide-y divide-line">
               {AIRPORTS.map((a) => {
-                const t = a.times.find(([from]) => from === "Stamford");
+                const t = a.times.find(([from]) => from === "New Haven");
                 return (
                   <li key={a.slug}>
                     <Link href={`/airports/${a.slug}`} className="flex items-center justify-between gap-4 py-4 transition hover:text-gold">

@@ -22,9 +22,9 @@ export async function generateMetadata({ params }) {
 }
 
 function faqFor(a) {
-  const stamford = (a.times.find(([c]) => c === "Stamford") || [])[1];
+  const newHaven = (a.times.find(([c]) => c === "New Haven") || [])[1];
   return [
-    [`How long does it take to get to ${a.short} from Connecticut?`, `It depends on where you start and the time of day. From Stamford a typical trip takes ${stamford}. We plan your pickup time around the traffic expected when you travel.`],
+    [`How long does it take to get to ${a.short} from Connecticut?`, `It depends on where you start and the time of day. From New Haven a typical trip takes ${newHaven}. We plan your pickup time around the traffic expected when you travel.`],
     [`Do you track my flight when I land at ${a.code}?`, "Yes. We follow your flight and adjust your pickup to the actual arrival time, so delays and early landings are covered."],
     [`Where do you pick up at ${a.short}?`, "Your chauffeur meets you at the arrivals curb of your terminal, or inside at baggage claim with a name sign if you choose meet and greet. You get a text with the exact meeting point when you land."],
     ["Which vehicle should I book?", "An executive sedan fits up to 3 passengers with luggage. A luxury SUV fits up to 6 and is best for families or extra bags. Groups of up to 14 can book a Sprinter van."],
