@@ -29,18 +29,6 @@ export default function BookNowPage() {
           "linear-gradient(rgba(0,0,0,0.56), rgba(0,0,0,0.72)), url('/images/book-bg.png')",
       }}
     >
-      <nav className="sticky top-0 z-50 flex items-center justify-between border-b border-[#D4AF37]/40 bg-black/75 px-8 py-4 backdrop-blur-md">
-        <Link href="/">
-          <img src="/images/logo.png" alt="JSR Executive Transportation" className="h-12 w-auto" />
-        </Link>
-
-        <div className="flex gap-8 text-lg">
-          <Link href="/" className="hover:text-[#D4AF37] transition">Home</Link>
-          <Link href="/services" className="hover:text-[#D4AF37] transition">Services</Link>
-          <Link href="/fleet" className="hover:text-[#D4AF37] transition">Fleet</Link>
-          <Link href="/contact" className="hover:text-[#D4AF37] transition">Contact</Link>
-        </div>
-      </nav>
 
       <section className="px-6 pt-24 pb-10 text-center">
         <p className="mb-4 text-sm uppercase tracking-[0.6em] text-[#D4AF37]">

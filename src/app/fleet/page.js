@@ -1,80 +1,57 @@
-import Link from "next/link";
+import Image from "next/image";
+import { BookButtons, CheckList, crumbsLd, JsonLd, PageHero, Section, SectionHeading } from "@/components/ui";
+import { FLEET } from "@/lib/site";
+
+export const metadata = {
+  title: "Our Fleet: Sedans, SUVs & Sprinter Vans",
+  description: "Executive sedans for up to 3, luxury SUVs for up to 6 and Mercedes Sprinter vans for up to 14 passengers. Clean, inspected, fully insured vehicles.",
+  alternates: { canonical: "/fleet" },
+};
 
 export default function FleetPage() {
+  const crumbs = [["/", "Home"], ["/fleet", "Fleet"]];
   return (
-    <main className="min-h-screen bg-black text-white">
-      {/* NAVIGATION */}
-      <nav className="sticky top-0 z-50 bg-black px-8 py-5">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <Link href="/">
-            <img
-              src="/images/logo.png"
-              alt="JSR Executive Transportation"
-              className="h-14 w-auto"
-            />
-          </Link>
-
-          <div className="flex gap-8 text-lg">
-            <Link href="/" className="hover:text-[#D4AF37] transition">
-              Home
-            </Link>
-
-            <Link href="/services" className="hover:text-[#D4AF37] transition">
-              Services
-            </Link>
-
-            <Link href="/fleet" className="text-[#D4AF37]">
-              Fleet
-            </Link>
-
-            <Link href="/contact" className="hover:text-[#D4AF37] transition">
-              Contact
-            </Link>
-          </div>
+    <main>
+      <JsonLd data={crumbsLd(crumbs)} />
+      <PageHero
+        eyebrow="OUR FLEET"
+        title="Reserve the right vehicle for your occasion"
+        lead="Premium sedans, luxury SUVs and executive Sprinter vans designed for comfort, professionalism and reliability."
+        crumbs={[["/", "Home"], [null, "Fleet"]]}
+      />
+      <Section>
+        <div className="grid gap-6 lg:grid-cols-3">
+          {FLEET.map((v) => (
+            <article key={v.key} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-ink-3/60">
+              <Image src={v.image} alt={`${v.name}, ${v.model}`} width={450} height={240} sizes="(min-width: 1024px) 33vw, 100vw" className="h-auto w-full" />
+              <div className="flex flex-1 flex-col p-7">
+                <h2 className="font-display text-2xl text-gold-gradient">{v.name}</h2>
+                <p className="text-sm italic text-mute">{v.model}</p>
+                <dl className="my-6 grid grid-cols-2 gap-4 border-y border-line py-5">
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.15em] text-mute">Passengers</dt>
+                    <dd className="font-display text-3xl text-white">{v.passengers}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.15em] text-mute">Bags</dt>
+                    <dd className="font-display text-3xl text-white">{v.bags}</dd>
+                  </div>
+                </dl>
+                <p className="mb-7 leading-7 text-mute">{v.bestFor}</p>
+                <div className="mt-auto">
+                  <BookButtons quote={false} bookLabel={`Book ${v.name.split(" ").pop()}`} />
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
-      </nav>
-
-      {/* FLEET IMAGE */}
-      <section className="px-6 py-12">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-3xl border border-[#D4AF37]/40 shadow-2xl">
-          <img
-            src="/images/fleet-section1.png"
-            alt="JSR Executive Transportation Fleet"
-            className="w-full object-cover"
-          />
+      </Section>
+      <Section tone="ink2">
+        <div className="grid gap-12 lg:grid-cols-2">
+          <SectionHeading eyebrow="SAFETY. RELIABILITY. PROFESSIONALISM." title="Every vehicle, every time" lead="Every vehicle in our fleet is maintained and inspected to the highest standards of safety and comfort." />
+          <CheckList items={["Cleaned and inspected before every trip", "Commercial insurance on every vehicle", "Climate control set before you step in", "Bottled water and phone chargers", "Child seats on request", "Exact vehicle may vary; you always ride in its class or better"]} />
         </div>
-      </section>
-
-      {/* CTA */}
-      <section className="px-6 pb-20 text-center">
-        <h2 className="mb-4 text-4xl font-bold text-[#D4AF37]">
-          Reserve the Right Vehicle for Your Occasion
-        </h2>
-
-        <p className="mx-auto mb-8 max-w-3xl text-lg text-gray-300">
-          Choose from premium sedans, luxury SUVs, and executive Sprinter
-          options designed for comfort, professionalism, and reliability.
-        </p>
-
-        <div className="flex flex-col justify-center gap-5 md:flex-row">
-          
-          <a
-  href="https://book.mylimobiz.com/v4/jsrexecutive"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="rounded-xl border border-[#D4AF37] bg-black px-8 py-4 text-lg font-bold text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black"
->
-  Book Now
-</a>
-
-          <Link
-            href="/get-a-quote"
-            className="rounded-xl border border-[#D4AF37] px-10 py-5 text-lg font-bold text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black"
-          >
-            Get a Quote
-          </Link>
-        </div>
-      </section>
+      </Section>
     </main>
   );
 }

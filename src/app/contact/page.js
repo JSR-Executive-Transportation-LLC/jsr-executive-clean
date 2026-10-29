@@ -1,125 +1,77 @@
 import Link from "next/link";
+import ContactForm from "@/components/ContactForm";
+import { crumbsLd, JsonLd, PageHero, Section } from "@/components/ui";
+import { BOOKING_URL, EMAIL, PHONE, PHONE_LINK, QUOTE_PATH, SMS_LINK } from "@/lib/site";
 
-export default function CTASection() {
+export const metadata = {
+  title: "Contact Us · Call or Text 475-224-4700",
+  description: "Book a luxury car in Connecticut. Call or text 475-224-4700, book online, or send a request for corporate accounts, weddings and group trips.",
+  alternates: { canonical: "/contact" },
+};
+
+export default async function ContactPage({ searchParams }) {
+  const sp = await searchParams;
+  const type = typeof sp?.type === "string" ? sp.type : "general";
+  const crumbs = [["/", "Home"], ["/contact", "Contact"]];
   return (
-    <main className="min-h-screen bg-black text-white">
-      {/* NAVBAR */}
-      <nav className="absolute top-0 left-0 z-50 w-full border-b border-[#D4AF37]/30 bg-black/40 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-          {/* LOGO */}
-          <Link href="/">
-            <img
-              src="/images/logo.png"
-              alt="JSR Executive Transportation"
-              className="h-14 w-auto cursor-pointer"
-            />
-          </Link>
-
-          {/* NAV LINKS */}
-          <div className="flex gap-8 text-lg font-medium">
-            <Link
-              href="/"
-              className="text-white transition hover:text-[#D4AF37]"
-            >
-              Home
-            </Link>
-
-            <Link
-              href="/services"
-              className="text-white transition hover:text-[#D4AF37]"
-            >
-              Services
-            </Link>
-
-            <Link
-              href="/fleet"
-              className="text-white transition hover:text-[#D4AF37]"
-            >
-              Fleet
-            </Link>
-
-            <Link
-              href="/contact"
-              className="text-white transition hover:text-[#D4AF37]"
-            >
-              Contact
-            </Link>
+    <main>
+      <JsonLd data={crumbsLd(crumbs)} />
+      <PageHero
+        eyebrow="READY WHEN YOU ARE"
+        title="Let's get you there in style."
+        lead="Premium chauffeur service for airport transfers, corporate travel, weddings, events and nights out. Book online, call or text, or send us a request."
+        crumbs={[["/", "Home"], [null, "Contact"]]}
+        buttons={false}
+      />
+      <Section>
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.6fr]">
+          <div>
+            <h2 className="mb-8 font-display text-2xl text-gold-gradient">We answer 24/7</h2>
+            <dl className="space-y-6">
+              <Item label="Call">
+                <a href={PHONE_LINK} className="hover:text-gold">
+                  {PHONE}
+                </a>
+              </Item>
+              <Item label="Text">
+                <a href={SMS_LINK} className="hover:text-gold">
+                  {PHONE}
+                </a>
+              </Item>
+              <Item label="Email">
+                <a href={`mailto:${EMAIL}`} className="break-all hover:text-gold">
+                  {EMAIL}
+                </a>
+              </Item>
+              <Item label="Book online">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="hover:text-gold">
+                  Reserve your ride →
+                </a>
+              </Item>
+              <Item label="Instant estimate">
+                <Link href={QUOTE_PATH} className="hover:text-gold">
+                  Get a quote →
+                </Link>
+              </Item>
+            </dl>
+            <p className="mt-8 leading-7 text-mute">For rides in the next few hours, please call or text so we can confirm right away. We serve Connecticut and the surrounding areas.</p>
+          </div>
+          <div className="rounded-2xl border border-line bg-ink-3/60 p-7 md:p-9">
+            <h2 className="font-display text-2xl text-white">Send a request</h2>
+            <p className="mb-7 mt-2 text-mute">Corporate accounts, weddings, group trips or questions. We usually reply within a few hours.</p>
+            <ContactForm initialType={type} />
           </div>
         </div>
-      </nav>
-
-      {/* HERO SECTION */}
-      <section
-        className="relative min-h-screen bg-cover bg-center flex items-center justify-center text-center px-6"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.58), rgba(0,0,0,0.68)), url('/images/book-bg.png')",
-        }}
-      >
-        {/* OVERLAY */}
-        <div className="absolute inset-0 bg-black/20"></div>
-
-        {/* CONTENT */}
-        <div className="relative z-10 max-w-5xl pt-32">
-          {/* SMALL TITLE */}
-          <p className="text-[#D4AF37] uppercase tracking-[0.45em] text-sm md:text-base mb-6">
-            Ready When You Are
-          </p>
-
-          {/* MAIN TITLE */}
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight text-[#D4AF37] mb-8">
-            Let’s Get You There in Style.
-          </h1>
-
-          {/* DESCRIPTION */}
-          <p className="text-xl md:text-2xl text-gray-100 leading-relaxed max-w-3xl mx-auto mb-12">
-            Premium chauffeur service for airport transfers, corporate travel,
-            weddings, events, and nights out.
-          </p>
-
-          {/* BUTTONS */}
-          <div className="flex flex-col md:flex-row justify-center gap-5 mb-12">
-            <a
-  href="https://book.mylimobiz.com/v4/jsrexecutive"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="rounded-xl border border-[#D4AF37] bg-black px-8 py-4 text-lg font-bold text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black"
->
-  Book Now
-</a>
-
-            <Link
-              href="/get-a-quote"
-              className="border border-[#D4AF37] text-[#D4AF37] font-bold px-10 py-5 rounded-xl text-lg hover:bg-[#D4AF37] hover:text-black transition duration-300 backdrop-blur-sm"
-            >
-              Get a Quote
-            </Link>
-          </div>
-
-          {/* CONTACT INFO */}
-          <div className="space-y-3 text-lg text-gray-100">
-            <p>
-              Call:{" "}
-              <a
-                href="tel:4752244700"
-                className="text-[#D4AF37] hover:text-white transition"
-              >
-                475-224-4700
-              </a>
-            </p>
-
-            <p>
-              Email:{" "}
-              <a
-                href="mailto:accounting@jsrexecutive.com"
-                className="text-[#D4AF37] hover:text-white transition"
-              >
-                accounting@jsrexecutive.com
-              </a>
-            </p>
-          </div>
-        </div>
-      </section>
+      </Section>
     </main>
+  );
+}
+
+function Item({ label, children }) {
+  return (
+    <div>
+      <dt className="text-xs uppercase tracking-[0.2em] text-mute">{label}</dt>
+      <dd className="mt-1 text-xl font-semibold text-white">{children}</dd>
+    </div>
   );
 }
