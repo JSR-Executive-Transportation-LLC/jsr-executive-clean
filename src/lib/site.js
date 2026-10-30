@@ -7,7 +7,8 @@ export const PHONE = "475-224-4700";
 export const PHONE_LINK = "tel:+14752244700";
 export const SMS_LINK = "sms:+14752244700";
 export const EMAIL = "reservations@jsrexecutive.com";
-export const BOOKING_URL = "https://book.mylimobiz.com/v4/jsrexecutive";
+// Online booking runs on GroundNexus: customers get a price, save a card and send a request.
+export const BOOKING_URL = "https://app.groundnexus.com/book";
 export const QUOTE_PATH = "/get-a-quote";
 
 export const SERVICES = [
