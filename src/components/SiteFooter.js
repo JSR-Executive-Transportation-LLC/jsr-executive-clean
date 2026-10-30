@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { AIRPORTS, BOOKING_URL, COMPANY, EMAIL, PHONE, PHONE_LINK, POLICIES, QUOTE_PATH, SERVICES } from "@/lib/site";
+import { AIRPORTS, BOOKING_URL, CLIENT_LOGIN_PATH, COMPANY, EMAIL, PHONE, PHONE_LINK, POLICIES, QUOTE_PATH, SERVICES } from "@/lib/site";
 
 export default function SiteFooter() {
   return (
@@ -48,6 +48,7 @@ export default function SiteFooter() {
             ))}
             <FooterLink href="/fleet">Our Fleet</FooterLink>
             <FooterLink href={QUOTE_PATH}>Get a Quote</FooterLink>
+            <FooterLink href={CLIENT_LOGIN_PATH}>Client Login</FooterLink>
           </FooterCol>
 
           <FooterCol title="Airports">

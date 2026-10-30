@@ -10,6 +10,10 @@ export const EMAIL = "reservations@jsrexecutive.com";
 // Online booking runs on GroundNexus: customers get a price, save a card and send a request.
 export const BOOKING_URL = "https://app.groundnexus.com/book";
 export const QUOTE_PATH = "/get-a-quote";
+// Client accounts (the rider app) also run on GroundNexus.
+export const CLIENT_APP_URL = "https://app.groundnexus.com/my";
+export const CLIENT_LOGIN_PATH = "/client-login";
+export const CLIENT_LOGIN_ACTION = "https://app.groundnexus.com/api/customer/web-login";
 
 export const SERVICES = [
   {

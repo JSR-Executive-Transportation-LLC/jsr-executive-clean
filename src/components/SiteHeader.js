@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { BOOKING_URL, PHONE, PHONE_LINK, QUOTE_PATH } from "@/lib/site";
+import { BOOKING_URL, CLIENT_LOGIN_PATH, PHONE, PHONE_LINK, QUOTE_PATH } from "@/lib/site";
 
 const NAV = [
   { href: "/services", label: "Services", match: ["/services", "/corporate-transportation", "/weddings-events", "/hourly-chauffeur"] },
@@ -58,6 +58,13 @@ export default function SiteHeader() {
                 {item.label}
               </Link>
             ))}
+            <Link
+              href={CLIENT_LOGIN_PATH}
+              aria-current={pathname === CLIENT_LOGIN_PATH ? "page" : undefined}
+              className={`rounded px-3 py-2 text-[15px] font-semibold transition ${pathname === CLIENT_LOGIN_PATH ? "text-gold" : "text-white/85 hover:text-gold"}`}
+            >
+              Client Login
+            </Link>
             <Link href={QUOTE_PATH} className="ml-2 rounded-md border border-gold/60 px-4 py-2 text-[14px] font-bold text-gold transition hover:bg-gold/10">
               Get a Quote
             </Link>
@@ -84,6 +91,9 @@ export default function SiteHeader() {
                 {item.label}
               </Link>
             ))}
+            <Link href={CLIENT_LOGIN_PATH} className="block border-b border-white/5 py-3 text-lg font-semibold text-white/90">
+              Client Login · My Rides
+            </Link>
             <div className="mt-5 grid grid-cols-2 gap-3">
               <Link href={QUOTE_PATH} className="rounded-md border border-gold/60 py-3 text-center font-bold text-gold">
                 Get a Quote
